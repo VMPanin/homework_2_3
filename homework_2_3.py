@@ -1,18 +1,13 @@
 import chardet
 import json
 
-
-file_name = input('Введи название файла (newsafr.json, newscy.json, newsfr.json, newsit.json):')
-def decode_file():
+def load_json():
+    file_name = input('Введи название файла (newsafr.json, newscy.json, newsfr.json, newsit.json):')
     with open(file_name, 'rb') as f:
         data = f.read()
         result = chardet.detect(data)
-        result = (result['encoding'])
-    return result
-
-def load_json():
-    result_encoding = str(decode_file())
-    with open(file_name, encoding = result_encoding) as f:
+        result = result['encoding']
+    with open(file_name, encoding=result) as f:
         data = json.load(f)
     return data['rss']['channel']['items']
 
