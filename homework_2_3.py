@@ -17,7 +17,7 @@ def load_json():
     return data['rss']['channel']['items']
 
 def get_list_all_words():
-    items = (load_json())
+    items = load_json()
     all_words = []
     for item in items:
         words = item['title'].split(' ') + item['description'].split(' ')
