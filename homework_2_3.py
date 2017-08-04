@@ -1,8 +1,10 @@
 import chardet
 import json
 
+
 def load_json():
-    file_name = input('Введи название файла (newsafr.json, newscy.json, newsfr.json, newsit.json):')
+    file_name = input('Введи название файла (newsafr.json, newscy.json,'
+                      'newsfr.json, newsit.json):')
     with open(file_name, 'rb') as f:
         data = f.read()
         result = chardet.detect(data)
@@ -10,6 +12,7 @@ def load_json():
     with open(file_name, encoding=result) as f:
         data = json.load(f)
     return data['rss']['channel']['items']
+
 
 def get_list_all_words():
     items = load_json()
@@ -19,6 +22,7 @@ def get_list_all_words():
         all_words += words
     return all_words
 
+
 def get_dict_count_words():
     all_words = get_list_all_words()
     dict_words = {}
@@ -26,6 +30,7 @@ def get_dict_count_words():
         if len(word) > 6:
             dict_words[word] = all_words.count(word)
     return dict_words
+
 
 def get_top10_words():
     max_word_dict = {}
@@ -41,8 +46,10 @@ def get_top10_words():
         del dict_words[word]
     return max_word_dict
 
+
 def main():
     result_top10 = get_top10_words()
-    print('Топ-10 слов по упоминаемости в новостях с указанием числа упоминаний: ', result_top10)
+    print('Топ-10 слов по упоминаемости с указанием числа упоминаний: ',
+          result_top10)
 
 main()
