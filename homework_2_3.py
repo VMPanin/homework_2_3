@@ -38,6 +38,7 @@ def get_top10_words():
     num = 10
     while num >= 1:
         num = num - 1
+        word = ''
         for k, v in dict_words.items():
             max_word = max(dict_words.values())
             if v == max_word:
@@ -53,3 +54,4 @@ def main():
           result_top10)
 
 main()
+
